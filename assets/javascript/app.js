@@ -49,8 +49,13 @@ renderButtons();
       function displayvillainInfo() {
           $("#villains-view").empty(); //empties gifs from div so new ones can be pushed from api request
         
-        var villain = $(this).attr("data-name");
-        var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${villain}&limit=10&offset=0&rating=PG-13&lang=en`;
+        
+          var villain = $(this).attr("data-name");
+
+          //API Key would not link to java on my deploy link for some reason
+          var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=3N7NX6spXgkUbr96DuzjgxIHZBEnh2fY&q=${villain}&limit=10&offset=0&rating=PG-13&lang=en`
+          
+        // var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${villain}&limit=10&offset=0&rating=PG-13&lang=en`;
 
         // Creating an AJAX call for the specific villain button being clicked
         $.ajax({
@@ -69,7 +74,7 @@ renderButtons();
         var imageStillURL = gifs[i].images.original_still.url; //isolates still gif url
 
         //creates image tag with sources that can be changed later. Each url is pulled from its respective data. Image starts still. 
-        var imagesStill = $(`<img class='gif' src='${imageStillURL}' data-still='${imageStillURL}' data-animate='${imagesURL}' data-state='still'>`); 
+        var imagesStill = $(`<img class='gif' src=${imageStillURL} data-still=${imageStillURL} data-animate=${imagesURL} data-state='still'>`); 
         
         // imagesStill.attr("src", gifs[i].images.original_still.url) /// alternative to putting src in <img> tag
       
@@ -95,7 +100,7 @@ renderButtons();
           $(this).attr("data-state", "still");
         }
 
-           //////////////////// FOR SOME REASON, ONLY EVERY OTHER GIFS DATA STATE CAN BE CHANGED  ///////////////////////////////////////
+           //////////////////// FOR SOME REASON, ONLY EVERY OTHER GIFS DATA-STATE CAN BE CHANGED  ///////////////////////////////////////
 
       });}
 
@@ -104,4 +109,3 @@ renderButtons();
 
       }
      
-      
