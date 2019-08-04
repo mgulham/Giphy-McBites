@@ -53,7 +53,7 @@ renderButtons();
           var villain = $(this).attr("data-name");
 
           //API Key would not link to java on my deploy link for some reason
-          var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=3N7NX6spXgkUbr96DuzjgxIHZBEnh2fY&q=${villain}&limit=10&offset=0&rating=PG-13&lang=en`
+          var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=3N7NX6spXgkUbr96DuzjgxIHZBEnh2fY&q="${villain}"&limit=10&offset=0&rating=PG-13&lang=en`
           
         // var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${villain}&limit=10&offset=0&rating=PG-13&lang=en`;
 
