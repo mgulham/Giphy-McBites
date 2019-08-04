@@ -1,0 +1,21 @@
+body {
+    width: 960px;
+    height: auto;
+    background-image: url('../background.jpg');
+    background-size: 100%;
+}
+
+
+button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+
+#villain-form {
+    float: right;
+}
+#header {
+    margin-left: 30px;
+}
