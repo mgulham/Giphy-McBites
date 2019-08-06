@@ -30,14 +30,18 @@ function renderButtons() {
 // This function handles events where a villain button is clicked
 $("#add-villain").on("click", function(event) {
   event.preventDefault();
+
   // This line grabs the input from the textbox
-  var villain = $("#villain-input").val().trim();
+  
+    var villain = $("#villain-input").val().trim();
 
   // Adding villain from the textbox to our array
   villains.push(villain);
 
   // Calling renderButtons which handles the processing of our villain array
   renderButtons();
+  
+  
 });
 
 // Adding a click event listener to all elements with a class of "villain-btn"
@@ -55,7 +59,7 @@ renderButtons();
           //API Key would not link to java on my deploy link for some reason
           var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q="${villain}"&limit=10&offset=0&rating=PG-13&lang=en`
           
-        // var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${villain}&limit=10&offset=0&rating=PG-13&lang=en`;
+
 
         // Creating an AJAX call for the specific villain button being clicked
         $.ajax({
@@ -69,19 +73,22 @@ renderButtons();
     for (var i = 0; i < gifs.length; i++){ //looping through response to manipulate data
         
         
-        var ratings = $(`<p>${gifs[i].rating}<p>`); //Isolates rating for each gif and puts it into a <p> tag
+        var ratings = $(`<p>Rated: ${gifs[i].rating}<p>`); //Isolates rating for each gif and puts it into a <p> tag
         var imagesURL = gifs[i].images.original.url; //isolates animated image url
         var imageStillURL = gifs[i].images.original_still.url; //isolates still gif url
 
         //creates image tag with sources that can be changed later. Each url is pulled from its respective data. Image starts still. 
         var imagesStill = $(`<img class='gif' src=${imageStillURL} data-still=${imageStillURL} data-animate=${imagesURL} data-state='still'>`); 
-        
+        console.log(imageStillURL)
+        console.log(imagesURL);
         // imagesStill.attr("src", gifs[i].images.original_still.url) /// alternative to putting src in <img> tag
       
         $("#villains-view").append(ratings) //ratings <p> tag pushed unto html
         $("#villains-view").append(imagesStill); //still images pushed onto html
-        
-        $(".gif").on("click", function() {
+    
+       } 
+    
+       $(".gif").on("click", function(){
         // The attr jQuery method allows us to change the value of any attribute on our HTML element
         var state = $(this).attr("data-state");
         
@@ -91,21 +98,21 @@ renderButtons();
         if (state === "still") {
           $(this).attr("src", $(this).attr("data-animate"));
           $(this).attr("data-state", "animate");
+        }
 
            // If the clicked image's state is animate, src attribute is updated to link from what its data-still value is.
         // Then, set the image's data-state to still
-        
-        } else if (state === "animate") {
+        else if (state === "animate") {
           $(this).attr("src", $(this).attr("data-still"));
           $(this).attr("data-state", "still");
         }
-
+    })
+    })}
+   
            //////////////////// FOR SOME REASON, ONLY EVERY OTHER GIFS DATA-STATE CAN BE CHANGED  ///////////////////////////////////////
 
-      });}
-
-
-        });
-
-      }
+        
      
+
+      
+      
